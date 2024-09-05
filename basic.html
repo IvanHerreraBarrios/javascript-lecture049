@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript basics</title>
+</head>
+
+<body>
+    <h1>Javascript basics</h1>
+    <ul>
+        <li>Spring</li>
+        <li>Summer</li>
+        <li>Fall</li>
+        <li>Winter</li>
+    </ul>
+    <script>
+        console.log(this) // windows
+        console.log(window)
+        console.log(this === window) //true
+
+        this.name = "Global context"
+        console.log(this.name)
+
+        function print(){
+            console.log(this.name)
+        }
+
+        print()
+
+        const obj = {
+            name: "Object context",
+            print: function(){
+                console.log(this.name)
+            }
+        }
+
+        obj.print()
+
+        {
+            //scoope
+        }
+
+        const obj2 = {
+            name: "Object context 2",
+            print: print
+        }
+
+        obj2.print()
+
+        const obj3 = {
+            name: "Object context 3",
+            print: () => {
+                console.log(this.name)
+            }
+        }
+
+        obj3.print()
+
+        function Guy(name){
+            this.name = name
+            //return console.log(this.name) //object scope
+            return function() {
+                console.log(this.name) //global scope
+            }
+
+            return () => console.log(this.name) //object scope
+        }
+
+        let jon = new Guy("Jon") 
+        jon()
+    </script>
+</body>
+
+</html>
